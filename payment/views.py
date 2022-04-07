@@ -9,8 +9,8 @@ gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
 def payment_process(request):
 
     order_id = request.session.get('order_id')
-    order = get_object_or_404(Order, order_id)
-    total_cost  = order_id.get_total_cost()
+    order = get_object_or_404(Order,id = order_id)
+    total_cost  = order.get_total_cost()
 
     if request.method == 'POST':
         nonce = request.POST.get('payment_method_nonce', None)
@@ -22,6 +22,7 @@ def payment_process(request):
                 'submit_for_settlement' : True
             }
         })
+        print("res", result.is_success)
         if result.is_success:
             order.paid = True
             order.braintree_id = result.transaction.id
