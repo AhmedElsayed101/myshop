@@ -12,9 +12,9 @@ def coupon_apply(request):
         code = form.cleaned_data['code']
         try:
             coupon = Coupon.objects.get(
-                code_iexact=code,
-                valide_from_lte=now,
-                valid_to_gte=now,
+                code__iexact=code,
+                valid_from__lte=now,
+                valid_to__gte=now,
                 active=True
             )
             request.session['coupon_id'] = coupon.id
