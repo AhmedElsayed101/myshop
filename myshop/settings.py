@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import braintree
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #local
+    # local
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
-    #django
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -141,7 +143,6 @@ BRAINTREE_MERCHANT_ID = 't3pv779t3nn22t28'
 BRAINTREE_PUBLIC_KEY = 'd56j4v73xh5fcwpj'
 BRAINTREE_PRIVATE_KEY = 'bcf44aa602d3f3c22bef259cafa4862c'
 
-import braintree
 
 BRAINTREE_CONF = braintree.Configuration(
     braintree.Environment.Sandbox,
@@ -152,3 +153,18 @@ BRAINTREE_CONF = braintree.Configuration(
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+LANGUAGE_CODE = 'en'
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
+
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
