@@ -28,11 +28,11 @@ msgstr ""
 
 #: myshop/settings.py:163
 msgid "English"
-msgstr "Inglés"
+msgstr ""
 
 #: myshop/settings.py:164
 msgid "Spanish"
-msgstr "Español"
+msgstr ""
 
 #: orders/models.py:10
 msgid "first name"
