@@ -55,7 +55,7 @@
           <td class="num">${{ cart.get_total_price|floatformat:2 }}</td>
         </tr>
         <tr>
-          <td>"{{ code }}" coupon ({{ discount }}% off)</td>
+          <td>"{{ cart.coupon.code }}" coupon ({{ cart.coupon.discount }}% off)</td>
           <td colspan="4"></td>
           <td class="num neg">
             - ${{ cart.get_discount|floatformat:2 }}
