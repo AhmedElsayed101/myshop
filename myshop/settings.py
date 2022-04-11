@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from django.utils.translation import gettext_lazy as _
 import braintree
 import os
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd
     'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -159,7 +161,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 LANGUAGE_CODE = 'en'
 
-from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = (
     ('en', _('English')),
@@ -170,3 +171,15 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
+
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'es'},
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
